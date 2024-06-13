@@ -60,6 +60,18 @@ app.get("/employees", (req, res) => {
     )
   })
 
+  app.delete('/delete/:id', (req, res) => {
+    const id = req.params.id
+    db.query("DELETE FROM employees WHERE id = ?",  id, (err, result) => {
+        if (err) {
+            console.log(err);
+        } else{
+            res.send("Employee deleted successfully")
+        }
+  
+  })
+})
+
 app.listen(3001, () => {
     console.log('Server started on port 3001');
 });
